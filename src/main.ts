@@ -1,16 +1,16 @@
 import { NestFactory } from '@nestjs/core';
 import { Module, Controller, Get } from '@nestjs/common';
 
-@Controller()  // This decorator marks the class as a controller
+@Controller()  
 class AppController {
-  @Get()  // This decorator defines a route handler for GET requests to the root URL
+  @Get()  
   getHello(): string {
     return 'Hello, World!';
   }
 }
 
 @Module({
-  controllers: [AppController],  // Register the controller with the module
+  controllers: [AppController],
 })
 class AppModule {}
 
