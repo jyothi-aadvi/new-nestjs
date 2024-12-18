@@ -1,21 +1,25 @@
-import { Body, Controller ,Get , Param, Post} from '@nestjs/common';
-import { string } from 'mathjs';
+import { Controller, Get, Post, Body, Param } from '@nestjs/common';
+import { CreateMessageDto } from './dtos/create-message.dto';
 
-@Controller('message')
+@Controller('messages') // Use 'messages', not 'message', to match your endpoint
 export class MessageController {
     @Get()
-    listMessages(){
+    listMessages() {
+        return { message: 'List of messages' }; // Sample response
+    }
 
-    }
-    @Post()
-    createMessages(@Body() body: any) {
-        console.log(body);
-    }
-   
+        @Post()
+        createMessage(@Body() body: CreateMessageDto) {
+            console.log('Received body:', body);
+            return {
+                message: 'Message received successfully!',
+                data: body,
+            };
+        }
+
     @Get('/:id')
-    getMessages(@Param('id') id: string) {
+    getMessage(@Param('id') id: string) {
         console.log(id);
-        
+        return { message: `Message with ID: ${id}` };
     }
-
 }
